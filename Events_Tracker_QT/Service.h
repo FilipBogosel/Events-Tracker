@@ -2,11 +2,18 @@
 #include "EventsRepository.h"
 #include "UserRepository.h"
 #include <vector>
+#include "EventsListCSV.h"
+#include "EventsListHTML.h"
+#include "EventsList.h"
+#include <memory>
+
 class Service
 {
 private:
 	EventsRepo events_repository;
 	UserRepo users_repository;
+	EventsList* events_list;
+
 
 public:
 	//Function for adding an event to the events repo
@@ -47,6 +54,8 @@ public:
 	void save_repo_to_file(const std::string& filename);
 	//Function that loads the repository from a given file
 	void load_repo_from_file(const std::string& filename);
+	//Function that saves the current event list to a file
+	void save_events_list_to_file(const std::string& filename, const User& user);
 
 
 

@@ -59,5 +59,8 @@ void User::add_event_to_user(const Event& e)
 
 void User::remove_event_from_user(int position)
 {
+	if (position < 0 || position > this->events_list.size()) {
+		return; 
+	}
 	this->events_list.erase(this->events_list.begin()+position);
 }

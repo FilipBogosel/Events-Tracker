@@ -1,6 +1,8 @@
 #pragma once
 #include <chrono>
 #include <string>
+#include <ostream>
+#include <istream>
 class Event
 {
 private:
@@ -46,5 +48,6 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Event& event);
 	friend std::istream& operator>>(std::istream& is, Event& event);
 
+	std::string to_string() const;	
 };
 

@@ -122,3 +122,18 @@ void Service::load_repo_from_file(const std::string& filename)
 {
 	this->events_repository.load_from_file(filename);
 }
+
+void Service::save_events_list_to_file(const std::string& filename, const User& user)
+{
+	if (filename.find(".html") != std::string::npos) {
+		this->events_list = new EventsListHTML(filename);
+	}
+	else {
+		this->events_list = new EventsListCSV(filename);
+	}
+	this->events_list->set_list(this->users_repository.get_users_list()[this->get_user_position(user)]);
+	this->events_list->write_to_file();
+	delete this->events_list;
+	this->events_list = nullptr;
+}
+

@@ -1,6 +1,5 @@
 #pragma once
 #include "Event.h"
-#include "DynamicVector.h"
 #include <vector>
 #include <ctime>
 class EventsRepo

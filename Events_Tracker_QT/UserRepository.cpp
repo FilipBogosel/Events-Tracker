@@ -70,31 +70,46 @@ void UserRepo::load_from_file(std::string file_name)
 	std::ifstream file(file_name);
 	if (!file.is_open())
 		throw std::invalid_argument("The file could not be opened!");
+	this->users_list.clear(); // Clear existing users before loading
+
 	std::string name, password, title, description, link, date_time, line;
-	int  events_number;
+	int events_number;
+
 	while (file >> name >> password >> events_number) {
+		file.ignore(); // Skip the newline after events_number
+
 		User u{ name, password };
-		file.get();
-		for (const auto& event : u.get_events_list()) {
-			std::getline(file, line); // title
-			std::string title = line;
-			std::getline(file, line); // description
-			std::string description = line;
-			std::getline(file, line); // link
-			std::string link = line;
-			std::getline(file, line); // date_time
-			std::string date_time = line;
-			std::getline(file, line); // number_of_participants
-			int number_of_participants = std::stoi(line);
+
+		// Read 'events_number' events (not iterate over existing events)
+		for (int i = 0; i < events_number; i++) {
+			std::getline(file, title);
+			std::getline(file, description);
+			std::getline(file, link);
+			std::getline(file, date_time);
+
+			// Read number of participants
+			std::getline(file, line);
+			int number_of_participants;
+			try {
+				number_of_participants = std::stoi(line);
+			}
+			catch (const std::exception& e) {
+				throw std::runtime_error("Failed to parse number of participants: " + line);
+			}
+
+			// Create and add event
 			Event e0;
 			std::chrono::system_clock::time_point date_time_tp = e0.string_to_time_point(date_time);
 			Event e{ title, description, link, date_time_tp, number_of_participants };
 			u.add_event_to_user(e);
 		}
+
 		this->add_user(u);
 	}
+
 	file.close();
 }
+
 
 bool UserRepo::is_already_user(const User& u)
 {

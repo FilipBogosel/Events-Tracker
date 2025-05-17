@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
-#include "DynamicVector.h"
 #include <vector>
+#include "Event.h"
+
 class User
 {
 private:

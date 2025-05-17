@@ -1,7 +1,6 @@
 #include <stdexcept>
 #include "Event.h"
-#include <ostream>
-#include <istream>
+#include <sstream>
 using namespace std;
 #define _CRT_SECURE_NO_WARNINGS
 //default constructor
@@ -112,6 +111,13 @@ chrono::system_clock::time_point Event::string_to_time_point(string date_time) {
 
 }
 
+std::string Event::to_string() const
+{
+	stringstream ss;
+	ss << this->title << "\n";
+	return ss.str();
+}
+
 std::ostream& operator<<(std::ostream& os, const Event& event)
 {
 	os << event.title << "\n";
@@ -135,7 +141,7 @@ std::istream& operator>>(std::istream& is, Event& event)
 
 	event.set_title(title);
 	event.set_description(description);
-	event.set_link_to_event(title);
+	event.set_link_to_event(link);
 	event.set_date_time(event.string_to_time_point(date));
 	event.set_number_of_participants(participants);
 
