@@ -1,53 +1,43 @@
-# Event Management System
+# Events Tracker QT
 
-## Project Description
-A C++ application for managing events and user watchlists, featuring:  
-- **Administrator Mode**: Manage events (add/remove/update)  
-- **User Mode**: Browse events, maintain personal watchlist, and get event reminders  
-- File persistence for events and users  
-- Unit tests for core components  
+A cross‑platform desktop application built with Qt for managing, organizing, and visualizing personal or team events and reminders. 
 
-## Key Features
-### 🛠 Administrator Functions
-- Add/remove/update events  
-- View all events  
-- Persistent storage in `events.txt`  
-- Initialization with sample events  
+## Features
 
-### 👥 User Functions
-- Secure sign up/login system  
-- Browse events by month  
-- Add/remove events to watchlist  
-- Automatic web link opening for events  
-- Watchlist persistence in `users.txt`  
-- Chronological event sorting  
+- **Add / Edit / Delete Events**  
+  Create new events with title, description, date, time and optional reminders.
+- **Calendar View**  
+  Month‑by‑month calendar interface for quick navigation and overview.
+- **List & Detail View**  
+  Scrollable list of upcoming events with full detail panels.
+- **Search & Filter**  
+  Quickly find events by keyword, date range, or category.
+- **Notifications**  
+  Optional pop‑up reminders at configurable intervals before each event.
+- **Import / Export**  
+  Save or load events to/from CSV for backup or integration with other tools.
+- **Persistent Storage**  
+  Uses a lightweight SQLite database under the hood; no external dependencies.
 
-## Prerequisites
-- Windows OS (uses Windows API for link handling)  
-- C++17 compatible compiler (GCC/MinGW recommended)  
+## Getting Started
 
-## Installation
-1. Clone repository:
-```bash
-git clone https://github.com/yourusername/event-manager.git
-cd event-manager
-```
-## Main menu:
-```
-Log as administrator or user? 1. Administrator 2. User 0. Exit
-```
-## Administrator Commands
-```
-1. Display watchlist
-2. Browse events by month
-3. Remove from watchlist
-0. Exit
-```
+### Prerequisites
 
-## User features
-```
-1. Display watchlist
-2. Browse events by month
-3. Remove from watchlist
-0. Exit
-```
+- **Qt 5.12+** (or Qt 6.x)  
+- **C++17** compiler (e.g. GCC, Clang, MSVC)  
+- **CMake 3.14+**  
+
+### Installation
+
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/your‑username/events‑tracker‑qt.git
+   cd events‑tracker‑qt
+2. **Build with CMake**
+    ```bash
+    mkdir build && cd build
+    cmake .. 
+    cmake --build .
+3. **Run the app**
+   ```bash
+   ./EventsTracker
